@@ -11,6 +11,6 @@ import java.util.List;
 @Getter
 public class KakaoApiResponseDto {
 
-    private MetaDto metaDto;
+    private MetaDto meta;
     private List<DocumentDto> documents;
 }
