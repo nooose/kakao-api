@@ -24,6 +24,7 @@ public class DirectionService {
     private static final int MAX_SEARCH_COUNT = 3;
     private static final double RADIUS_KM = 10.0;
     private static final double EARTH_RADIUS = 6371;
+    private static final String DIRECTION_BASE_URL = "https://map.kakao.com/link/map/";
 
     private final PharmacySearchService pharmacySearchService;
     private final DirectionRepository directionRepository;
@@ -42,7 +43,7 @@ public class DirectionService {
     public String findDirectionUrlById(String encodedId) {
         Long decodedId = base62Service.decodeDirectionId(encodedId);
         Direction direction = directionRepository.findById(decodedId).orElse(null);
-        return String.join(",", direction.getTargetPharmacyName(),
+        return DIRECTION_BASE_URL + String.join(",", direction.getTargetPharmacyName(),
                 String.valueOf(direction.getTargetLatitude()), String.valueOf(direction.getTargetLongitude()));
     }
 

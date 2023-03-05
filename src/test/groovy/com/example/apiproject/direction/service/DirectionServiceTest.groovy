@@ -1,6 +1,8 @@
 package com.example.apiproject.direction.service
 
 import com.example.apiproject.api.dto.DocumentDto
+import com.example.apiproject.api.service.KakaoCategorySearchService
+import com.example.apiproject.direction.repository.DirectionRepository
 import com.example.apiproject.pharmacy.dto.PharmacyDto
 import com.example.apiproject.pharmacy.service.PharmacySearchService
 import spock.lang.Specification
@@ -8,9 +10,20 @@ import spock.lang.Specification
 class DirectionServiceTest extends Specification {
 
     private PharmacySearchService pharmacySearchService = Mock()
-    private DirectionService directionService = new DirectionService(pharmacySearchService)
+    private DirectionRepository directionRepository = Mock()
+    private KakaoCategorySearchService kakaoCategorySearchService = Mock()
+    private Base62Service base62Service = Mock()
+
+    private DirectionService directionService = new DirectionService(
+            pharmacySearchService, directionRepository, kakaoCategorySearchService, base62Service)
 
     private List<PharmacyDto> pharmacies
+
+    @Override
+    Object getProperty(String propertyName) {
+        return super.getProperty(propertyName)
+    }
+
 
     def setup() {
         pharmacies = new ArrayList<>()

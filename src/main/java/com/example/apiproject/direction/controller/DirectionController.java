@@ -13,12 +13,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Controller
 public class DirectionController {
     private final DirectionService directionService;
-    private static final String DIRECTION_BASE_URL = "https://map.kakao.com/link/map/";
 
     @GetMapping("/dir/{encodedId}")
     public String searchDirection(@PathVariable String encodedId) {
-        String shortUrl = directionService.findDirectionUrlById(encodedId);
-        return "redirect:" + UriComponentsBuilder.fromHttpUrl(DIRECTION_BASE_URL + shortUrl)
+        String directionUrl = directionService.findDirectionUrlById(encodedId);
+        return "redirect:" + UriComponentsBuilder.fromHttpUrl(directionUrl)
                 .toUriString();
     }
 }
