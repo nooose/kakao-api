@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class PharmacyRecommendationService {
-
     private final KakaoAddressSearchService kakaoAddressSearchService;
     private final DirectionService directionService;
+
 
     public List<OutputDto> recommendPharmacies(String address) {
         KakaoApiResponseDto kakaoApiResponse = kakaoAddressSearchService.requestAddressSearch(address);
